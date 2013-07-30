@@ -14,7 +14,8 @@ For example, `fmtnum 1000000` would output `1,000,000`, and
     $ fmtnum 20100102030304
     20,100,102,030,304
 
-## Features
+## To-Do
+ - word mode (3020 => 'three thousand twenty')
 
 ## Contributing
 

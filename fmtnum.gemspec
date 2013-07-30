@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tobi.lehman@gmail.com"]
   spec.description   = %q{Command line utility to format a number with commas, and (optionally) output the word for the number.}
   spec.summary       = %q{Command line utility to format a number with commas, and (optionally) output the word for the number.}
-  spec.homepage      = "https://github.com/tlehman/fmtnum"
+  spec.homepage      = "https://github.com/tlehman/fmtnum#readme"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
