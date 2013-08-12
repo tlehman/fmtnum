@@ -14,10 +14,20 @@ class FormattedNumber
   end
 
   def pronounce
+    pronounced = ""
+    triplets = to_s.split(",")
+    len = triplets.length
+
+    triplets.each_with_index do |triplet,index|
+      pronounced += pronounce_triplet(triplet)
+      pronounced += " " if index < len-2 && pronounce_triplet(triplet)
+    end
+
+    pronounced
   end
 
-  DIGITS = %w{one two three four five six seven eight nine ten}
-
+  DIGITS = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+  TENS = ["", "teen", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"]
   BIG_NUMBERS = {
     2 => 'hundred',
     3 => 'thousand',
@@ -55,4 +65,15 @@ class FormattedNumber
     99 => 'duotrigintillion',
     100 => 'googol'
   }
+
+  private
+
+  # a triplet is a number between 0 and 999 as a string
+  def pronounce_triplet(triplet)
+    raise "#{triplet} is not a triplet" unless triplet =~ /^\d{1,3}$/
+    hund,tens,ones = ("%03d" % triplet).split(//).map(&:to_i)
+
+
+    pronounced = DIGITS[hund] + (hund==0 ? ' ' : ' hundred ') + TENS[tens] + ' ' + DIGITS[ones]
+  end
 end
