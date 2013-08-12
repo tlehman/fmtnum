@@ -1,9 +1,22 @@
 require "fmtnum/version"
 
 class FormattedNumber
+  def initialize(input)
+    @input = input
+  end
+
+  def number?
+    !@input.nil? && (@input =~ /^\-?(\d+)(\.\d+)?$/)
+  end
+
+  def to_s
+    @input.gsub(/(?<=\d)(?=(\d\d\d)+(\b|\.))/, ',')
+  end
+
   DIGITS = %w{one two three four five six seven eight nine ten}
 
   BIG_NUMBERS = {
+    2 => 'hundred',
     3 => 'thousand',
     6 => 'million',
     9 => 'billion',
@@ -39,24 +52,4 @@ class FormattedNumber
     99 => 'duotrigintillion',
     100 => 'googol'
   }
-
-  def initialize(input)
-    @input = input
-  end
-
-  def usage
-  puts <<-EOF
-  Usage:
-    $ fmtnum 20100102030304
-    20,100,102,030,304
-  EOF
-  end
-
-  def number?
-    !@input.nil? && (@input =~ /^\-?(\d+)(\.\d+)?$/)
-  end
-
-  def to_s
-    @input.gsub(/(?<=\d)(?=(\d\d\d)+(\b|\.))/, ',')
-  end
 end

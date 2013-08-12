@@ -7,4 +7,13 @@ class TestFmtnum < Minitest::Unit::TestCase
       assert FormattedNumber.new(snum).number?
     end
   end
+
+  def test_pronounce
+    {"1000000" => "one million",
+     "3000000000" => "three billion",
+     "700000000000" => "seven hundred trillion",
+     "2,032,140,001,241" => "two billion thirty two million one hundred fourty thousand one thousand two hundred fourty one"}.each do |snum,wnum|
+      assert_equal FormattedNumber.new(snum).pronounce wnum
+    end
+  end
 end
