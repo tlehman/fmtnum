@@ -1,10 +1,9 @@
 require "fmtnum/version"
 
-class Fmtnum::Num
+class FormattedNumber
   DIGITS = %w{one two three four five six seven eight nine ten}
 
   BIG_NUMBERS = {
-    2 => 'hundred',
     3 => 'thousand',
     6 => 'million',
     9 => 'billion',
@@ -54,7 +53,7 @@ class Fmtnum::Num
   end
 
   def number?
-    !@input.nil? && (@input =~ /^(\d+)(\.\d+)?$/)
+    !@input.nil? && (@input =~ /^\-?(\d+)(\.\d+)?$/)
   end
 
   def to_s
