@@ -13,6 +13,9 @@ class FormattedNumber
     @input.gsub(/(?<=\d)(?=(\d\d\d)+(\b|\.))/, ',')
   end
 
+  def pronounce
+  end
+
   DIGITS = %w{one two three four five six seven eight nine ten}
 
   BIG_NUMBERS = {
